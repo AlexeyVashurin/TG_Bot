@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@twa-dev/sdk": "^8.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "grammy": "^1.35.0"
+  }
+}
