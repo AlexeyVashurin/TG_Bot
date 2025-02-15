@@ -64,6 +64,22 @@ bot.on("message:successful_payment", async (ctx) => {
   }
 });
 
+
+bot.command("refund", (ctx) => {
+  const userId = ctx.from.id;
+  if (!paidUsers.has(userId)) {
+    return ctx.reply("You have not paid yet, there is nothing to refund");
+  }
+
+  ctx.api
+      .refundStarPayment(userId, paidUsers.get(userId))
+      .then(() => {
+        paidUsers.delete(userId);
+        return ctx.reply("Refund successful");
+      })
+      .catch(() => ctx.reply("Refund failed"));
+});
+
 // Запуск бота в режиме polling
 bot.start();
 
